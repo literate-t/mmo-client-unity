@@ -7,7 +7,7 @@ public class InventoryManager
 
     internal void Add(Item item)
     {
-        Items.Add(item.ItemDbId, item);
+        Items.Add(item.Slot, item);
     }
 
     internal Item Get(int itemDbId)

@@ -183,7 +183,7 @@ public class PacketHandler
         S_EquipItem equipItem = (S_EquipItem)packet;
 
         // 메모리에 아이템 정보 적용
-        Item findItem = Managers.Inventory.Get(equipItem.ItemDbId);
+        Item findItem = Managers.Inventory.Get(equipItem.Slot);
         if (findItem == null)
             return;
 

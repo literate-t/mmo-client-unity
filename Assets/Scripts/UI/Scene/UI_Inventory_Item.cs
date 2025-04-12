@@ -11,6 +11,8 @@ public class UI_Inventory_Item : UI_Base
     Image _frame;
 
     public int ItemDbId { get; private set; }
+
+    public int Slot {  get; private set; }
     public int DataSheetId { get; private set; }
     public int Count { get; private set; }
     public bool Equipped { get; private set; }
@@ -28,7 +30,7 @@ public class UI_Inventory_Item : UI_Base
                 return;
 
             C_EquipItem equipPacket = new();
-            equipPacket.ItemDbId = ItemDbId;
+            equipPacket.Slot = Slot;
             equipPacket.Equipped = !Equipped;
 
             Managers.Network.Send(equipPacket);
@@ -40,6 +42,7 @@ public class UI_Inventory_Item : UI_Base
         ItemDbId = item.ItemDbId;
         DataSheetId = item.DataSheetId;
         Count = item.Count;
+        Slot = item.Slot;
         Equipped = item.Equipped;
 
         Data.ItemData itemData = GetItem(DataSheetId);
