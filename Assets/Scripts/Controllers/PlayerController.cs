@@ -19,6 +19,9 @@ public class PlayerController : CreatureController
 
     protected override void UpdateAnimation()
     {
+        if (_animator == null || _spriteRenderer == null)
+            return;
+
         if (State == EntityState.Idle)
         {
             switch (Dir)

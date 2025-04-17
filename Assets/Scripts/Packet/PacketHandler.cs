@@ -73,7 +73,8 @@ public class PacketHandler
             return;
 
         CreatureController entity = go.GetComponent<CreatureController>();
-        entity.Hp = hpPacket.Hp;
+        if (entity != null)
+            entity.Hp = hpPacket.Hp;
     }
 
     internal static void S_DieHandler(PacketSession session, IMessage packet)
@@ -85,7 +86,8 @@ public class PacketHandler
             return;
 
         CreatureController entity = go.GetComponent<CreatureController>();
-        entity.OnDead();
+        if (entity != null)
+            entity.OnDead();
     }
 
     internal static void S_ConnectedHandler(PacketSession session, IMessage packet)
