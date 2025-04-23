@@ -21,7 +21,6 @@ public class UI_Inventory : UI_Base
             Items.Add(item);
         }
 
-        List<Item> items = Managers.Inventory.Items.Values.ToList();
         RefreshUI();
     }
 
