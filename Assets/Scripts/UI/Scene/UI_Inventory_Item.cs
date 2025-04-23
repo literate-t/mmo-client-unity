@@ -24,16 +24,22 @@ public class UI_Inventory_Item : UI_Base
             Debug.Log("Click Item");
 
             Data.ItemData itemData = GetItem(DataSheetId);
-
-            // TODO : C_USE_ITEM 아이템 사용 패킷
+            
             if (itemData != null && itemData.itemType == ItemType.Consumable)
-                return;
+            {
+                C_UseItem useItem = new C_UseItem();
+                useItem.Slot = Slot;
 
-            C_EquipItem equipPacket = new();
-            equipPacket.Slot = Slot;
-            equipPacket.Equipped = !Equipped;
+                Managers.Network.Send(useItem);
+            }
+            else
+            {
+                C_EquipItem equipPacket = new();
+                equipPacket.Slot = Slot;
+                equipPacket.Equipped = !Equipped;
 
-            Managers.Network.Send(equipPacket);
+                Managers.Network.Send(equipPacket);
+            }
         });
     }
 
@@ -55,18 +61,18 @@ public class UI_Inventory_Item : UI_Base
         }
         else
         {
-        ItemDbId = item.ItemDbId;
-        DataSheetId = item.DataSheetId;
-        Count = item.Count;
-        Slot = item.Slot;
-        Equipped = item.Equipped;
+            ItemDbId = item.ItemDbId;
+            DataSheetId = item.DataSheetId;
+            Count = item.Count;
+            Slot = item.Slot;
+            Equipped = item.Equipped;
 
-        Data.ItemData itemData = GetItem(DataSheetId);
+            Data.ItemData itemData = GetItem(DataSheetId);
 
-        Sprite icon = Managers.Resource.Load<Sprite>(itemData.iconPath);
-        _icon.sprite = icon;
-        _frame.gameObject.SetActive(Equipped);
-    }
+            Sprite icon = Managers.Resource.Load<Sprite>(itemData.iconPath);
+            _icon.sprite = icon;
+            _frame.gameObject.SetActive(Equipped);
+        }        
     }
 
     Data.ItemData GetItem(int dataSheetId)
