@@ -39,6 +39,22 @@ public class UI_Inventory_Item : UI_Base
 
     internal void SetItem(Item item)
     {
+
+        if (item == null)
+        {
+            ItemDbId = -1;
+            DataSheetId = -1;
+            Slot = -1;
+            Equipped = false;
+
+            Transform background = transform.Find("Background");
+            Image backImage = background.GetComponent<Image>();
+
+            _icon.sprite = backImage.sprite;
+            _frame.gameObject.SetActive(false);
+        }
+        else
+        {
         ItemDbId = item.ItemDbId;
         DataSheetId = item.DataSheetId;
         Count = item.Count;
@@ -50,6 +66,7 @@ public class UI_Inventory_Item : UI_Base
         Sprite icon = Managers.Resource.Load<Sprite>(itemData.iconPath);
         _icon.sprite = icon;
         _frame.gameObject.SetActive(Equipped);
+    }
     }
 
     Data.ItemData GetItem(int dataSheetId)
