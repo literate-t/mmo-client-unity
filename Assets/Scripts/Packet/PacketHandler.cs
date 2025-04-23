@@ -200,6 +200,18 @@ public class PacketHandler
         Debug.Log("Item equip changed!");
     }
 
+    internal static void S_UseItemHandler(PacketSession session, IMessage message)
+    {
+        S_UseItem useItem = (S_UseItem)message;
+        if (false == Managers.Inventory.Erase(useItem.Slot))
+            return;
+
+        UI_GameScene uiGameScene = (UI_GameScene)Managers.UI.SceneUI;
+        uiGameScene.InventoryUI.RefreshUI(useItem.Slot);
+
+        Debug.Log("Use item!");
+    }
+
     internal static void S_ChangeStatHandler(PacketSession session, IMessage packet)
     {
         throw new System.NotImplementedException();
