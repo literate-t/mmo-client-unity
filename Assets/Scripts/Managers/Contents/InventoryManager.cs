@@ -17,6 +17,11 @@ public class InventoryManager
         return item;
     }
 
+    internal bool Erase(int slot)
+    {
+        return Items.Remove(slot);
+    }
+
     internal Item Find(Func<Item, bool> predicate)
     {
         foreach (Item item in Items.Values)
