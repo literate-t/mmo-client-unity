@@ -39,4 +39,14 @@ public class UI_Inventory : UI_Base
             Items[item.Slot].SetItem(item);
         }
     }
+
+    internal void RefreshUI(int eraseSlot)
+    {
+        if (Items.Count == 0)
+            return;
+
+        Items[eraseSlot].SetItem(null);
+
+        RefreshUI();
+    }
 }
