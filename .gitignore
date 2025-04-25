@@ -77,3 +77,4 @@ crashlytics-build.properties
 **/unity-chan!.meta
 **/Resources/*
 /Assets/ThirdParty/Kenmi
+/Assets/ThirdParty/Kenmi.meta
