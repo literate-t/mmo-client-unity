@@ -49,7 +49,7 @@ public class ObjectManager
         }
         else if (type == GameObjectType.Monster)
         {
-            GameObject go = Managers.Resource.Instantiate("Entity/Monster");
+            GameObject go = Managers.Resource.Instantiate(info.Name);
             go.name = info.Name;
             Add(info.ObjectId, go);
 
