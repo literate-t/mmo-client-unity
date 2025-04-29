@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Action<PointerEventData> OnClickHandler = null;
+    public Action<PointerEventData> OnDoubleClickHandler = null;
     public Action<PointerEventData> OnDragHandler = null;
     public Action<PointerEventData> OnBeginDragHandler = null;
     public Action<PointerEventData> OnEndDragHandler = null;
@@ -26,6 +27,9 @@ public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IBeginDragHa
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        OnClickHandler?.Invoke(eventData);
-    }
+        if (eventData.clickCount == 2)
+            OnDoubleClickHandler.Invoke(eventData);
+        else if (eventData.clickCount == 1)
+            OnClickHandler?.Invoke(eventData);
+    }    
 }
