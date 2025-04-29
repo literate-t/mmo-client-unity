@@ -39,26 +39,26 @@ public class UI_Inventory_Item : UI_Base
     }
 
     private void OnDoubleClick(PointerEventData pointerEventData)
+    {
+        Debug.Log("Click Item");
+
+        Data.ItemData itemData = GetItem(DataSheetId);
+
+        if (itemData != null && itemData.itemType == ItemType.Consumable)
         {
-            Debug.Log("Click Item");
+            C_UseItem useItem = new C_UseItem();
+            useItem.Slot = Slot;
 
-            Data.ItemData itemData = GetItem(DataSheetId);
-            
-            if (itemData != null && itemData.itemType == ItemType.Consumable)
-            {
-                C_UseItem useItem = new C_UseItem();
-                useItem.Slot = Slot;
+            Managers.Network.Send(useItem);
+        }
+        else
+        {
+            C_EquipItem equipPacket = new();
+            equipPacket.Slot = Slot;
+            equipPacket.Equipped = !Equipped;
 
-                Managers.Network.Send(useItem);
-            }
-            else
-            {
-                C_EquipItem equipPacket = new();
-                equipPacket.Slot = Slot;
-                equipPacket.Equipped = !Equipped;
-
-                Managers.Network.Send(equipPacket);
-            }
+            Managers.Network.Send(equipPacket);
+        }
     }
 
     private void OnBeginDrag(PointerEventData pointerEventData)
@@ -88,6 +88,25 @@ public class UI_Inventory_Item : UI_Base
             _itemRectTransform.anchoredPosition = localPoint;
         }
     }
+
+    private void OnEndDrag(PointerEventData pointerEventData)
+    {
+        // transparent
+        _itemCanvasGroup.alpha = 1f;
+        _itemCanvasGroup.blocksRaycasts = true;
+
+        bool insideInventory = pointerEventData.pointerEnter != null
+            && pointerEventData.pointerEnter.GetComponentInParent<UI_Inventory>() != null;
+
+        if (!insideInventory)
+        {
+            Debug.Log("Out!!!!");
+        }
+        else
+        {
+            _itemRectTransform.SetParent(_itemOriginalParent, true);
+            _itemRectTransform.anchoredPosition = _origin_position;
+        }
     }
 
     internal void SetItem(Item item)
