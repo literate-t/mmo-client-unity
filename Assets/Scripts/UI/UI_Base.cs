@@ -78,8 +78,17 @@ public abstract class UI_Base : MonoBehaviour
             case Define.UIEvent.Click:
                 eventHandler.OnClickHandler += action;
                 break;
+            case Define.UIEvent.DoubleClick:
+                eventHandler.OnDoubleClickHandler += action;
+                break;
+            case Define.UIEvent.BeginDrag:
+                eventHandler.OnBeginDragHandler += action;
+                break;
             case Define.UIEvent.Drag:
                 eventHandler.OnDragHandler += action;
+                break;
+            case Define.UIEvent.EndDrag:
+                eventHandler.OnEndDragHandler += action;
                 break;
         }
     }
