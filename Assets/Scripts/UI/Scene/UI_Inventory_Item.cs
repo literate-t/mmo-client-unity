@@ -25,7 +25,19 @@ public class UI_Inventory_Item : UI_Base
 
     public override void Init()
     {
-        _icon.gameObject.AddUIEventHandler((evt) =>
+        _icon.gameObject.AddUIEventHandler(OnDoubleClick, Define.UIEvent.DoubleClick);
+        _icon.gameObject.AddUIEventHandler(OnBeginDrag, Define.UIEvent.BeginDrag);
+        _icon.gameObject.AddUIEventHandler(OnDrag, Define.UIEvent.Drag);
+        _icon.gameObject.AddUIEventHandler(OnEndDrag, Define.UIEvent.EndDrag);
+
+        _itemRectTransform = transform.Find("ItemIcon").GetComponent<RectTransform>();
+        _origin_position = _itemRectTransform.anchoredPosition;
+        _itemCanvasGroup = transform.Find("ItemIcon").GetComponent<CanvasGroup>();
+        _rootCanvas = GetComponentInParent<Canvas>();
+        _itemOriginalParent = _itemRectTransform.parent;
+    }
+
+    private void OnDoubleClick(PointerEventData pointerEventData)
         {
             Debug.Log("Click Item");
 
