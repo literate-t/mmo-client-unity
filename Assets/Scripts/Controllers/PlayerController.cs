@@ -28,7 +28,7 @@ public class PlayerController : CreatureController
             {
                 case MoveDir.Up:
                     _spriteRenderer.flipX = false;
-                    _animator.Play("IDLE_BACK");
+                    _animator.Play("IDLE_UP");
                     break;
                 case MoveDir.Left:
                     _animator.Play("IDLE_RIGHT");
@@ -40,7 +40,7 @@ public class PlayerController : CreatureController
                     break;
                 case MoveDir.Down:
                     _spriteRenderer.flipX = false;
-                    _animator.Play("IDLE_FRONT");
+                    _animator.Play("IDLE_DOWN");
                     break;
             }
         }
@@ -50,19 +50,19 @@ public class PlayerController : CreatureController
             switch (Dir)
             {
                 case MoveDir.Up:
-                    _animator.Play("WALK_BACK");
+                    _animator.Play("RUN_UP");
                     _spriteRenderer.flipX = false;
                     break;
                 case MoveDir.Down:
-                    _animator.Play("WALK_FRONT");
+                    _animator.Play("RUN_DOWN");
                     _spriteRenderer.flipX = false;
                     break;
                 case MoveDir.Left:
-                    _animator.Play("WALK_RIGHT");
+                    _animator.Play("RUN_RIGHT");
                     _spriteRenderer.flipX = true;
                     break;
                 case MoveDir.Right:
-                    _animator.Play("WALK_RIGHT");
+                    _animator.Play("RUN_RIGHT");
                     _spriteRenderer.flipX = false;
                     break;
             }
@@ -73,19 +73,19 @@ public class PlayerController : CreatureController
             {
                 case MoveDir.Up:
                     _spriteRenderer.flipX = false;
-                    _animator.Play(_rangedSkill ? "ATTACK_WEAPON_BACK" : "ATTACK_BACK");
+                    _animator.Play("ATTACK_UP");
                     break;
                 case MoveDir.Left:
-                    _animator.Play(_rangedSkill ? "ATTACK_WEAPON_RIGHT" : "ATTACK_RIGHT");
+                    _animator.Play("ATTACK_RIGHT");
                     _spriteRenderer.flipX = true;
                     break;
                 case MoveDir.Right:
                     _spriteRenderer.flipX = false;
-                    _animator.Play(_rangedSkill ? "ATTACK_WEAPON_RIGHT" : "ATTACK_RIGHT");
+                    _animator.Play("ATTACK_RIGHT");
                     break;
                 case MoveDir.Down:
                     _spriteRenderer.flipX = false;
-                    _animator.Play(_rangedSkill ? "ATTACK_WEAPON_FRONT" : "ATTACK_FRONT");
+                    _animator.Play("ATTACK_DOWN");
                     break;
             }
         }
