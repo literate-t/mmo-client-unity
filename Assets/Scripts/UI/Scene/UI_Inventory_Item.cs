@@ -58,7 +58,16 @@ public class UI_Inventory_Item : UI_Base
 
                 Managers.Network.Send(equipPacket);
             }
-        });
+    }
+
+    private void OnBeginDrag(PointerEventData pointerEventData)
+    {
+        // transparent
+        _itemCanvasGroup.alpha = 0.5f;        
+        _itemCanvasGroup.blocksRaycasts = false;
+
+        _itemRectTransform.SetParent(_rootCanvas.transform, false);
+    }
     }
 
     internal void SetItem(Item item)
