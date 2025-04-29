@@ -17,6 +17,12 @@ public class UI_Inventory_Item : UI_Base
     public int Count { get; private set; }
     public bool Equipped { get; private set; }
 
+    private RectTransform _itemRectTransform;
+    private CanvasGroup _itemCanvasGroup;
+    private Canvas _rootCanvas;
+    private Transform _itemOriginalParent;
+    private Vector3 _origin_position;
+
     public override void Init()
     {
         _icon.gameObject.AddUIEventHandler((evt) =>
