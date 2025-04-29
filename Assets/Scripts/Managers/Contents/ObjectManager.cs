@@ -26,7 +26,7 @@ public class ObjectManager
         {
             if (isMyPlayer)
             {
-                GameObject go = Managers.Resource.Instantiate("Entity/MyPlayer");
+                GameObject go = Managers.Resource.Instantiate("Entity/Archer");
                 go.name = info.Name;
                 Add(info.ObjectId, go);
 
@@ -60,7 +60,7 @@ public class ObjectManager
         }
         else if (type == GameObjectType.Projectile)
         {
-            GameObject go = Managers.Resource.Instantiate("Entity/Arrow");
+            GameObject go = Managers.Resource.Instantiate("Entity/LongArrow");
             go.name = "Arrow";
             Add(info.ObjectId, go);
 
