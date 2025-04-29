@@ -1,5 +1,6 @@
 using Google.Protobuf.MyProtocol;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_Inventory_Item : UI_Base
@@ -67,6 +68,25 @@ public class UI_Inventory_Item : UI_Base
         _itemCanvasGroup.blocksRaycasts = false;
 
         _itemRectTransform.SetParent(_rootCanvas.transform, false);
+    }
+
+    private void OnDrag(PointerEventData pointerEventData)
+    {
+        if (_rootCanvas.renderMode == RenderMode.ScreenSpaceOverlay)
+        {
+            _itemRectTransform.position = pointerEventData.position;
+        }
+        else
+        {
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                _rootCanvas.transform as RectTransform,
+                pointerEventData.position,
+                _rootCanvas.worldCamera,
+                out Vector2 localPoint
+                );
+
+            _itemRectTransform.anchoredPosition = localPoint;
+        }
     }
     }
 
