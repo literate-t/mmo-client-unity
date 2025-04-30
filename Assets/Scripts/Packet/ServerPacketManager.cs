@@ -46,9 +46,11 @@ public class ServerPacketManager
        _handler.Add((ushort)MessageId.SAddItem, PacketHandler.S_AddItemHandler);
        _onRecvPacket.Add((ushort)MessageId.SEquipItem, ParsePacket<S_EquipItem>);
        _handler.Add((ushort)MessageId.SEquipItem, PacketHandler.S_EquipItemHandler);
-        _onRecvPacket.Add((ushort)MessageId.SUseItem, ParsePacket<S_UseItem>);
-        _handler.Add((ushort)MessageId.SUseItem, PacketHandler.S_UseItemHandler);
-        _onRecvPacket.Add((ushort)MessageId.SChangeStat, ParsePacket<S_ChangeStat>);
+       _onRecvPacket.Add((ushort)MessageId.SUseItem, ParsePacket<S_UseItem>);
+       _handler.Add((ushort)MessageId.SUseItem, PacketHandler.S_UseItemHandler);
+       _onRecvPacket.Add((ushort)MessageId.SDropItem, ParsePacket<S_DropItem>);
+       _handler.Add((ushort)MessageId.SDropItem, PacketHandler.S_DropItemHandler);
+       _onRecvPacket.Add((ushort)MessageId.SChangeStat, ParsePacket<S_ChangeStat>);
        _handler.Add((ushort)MessageId.SChangeStat, PacketHandler.S_ChangeStatHandler);
        _onRecvPacket.Add((ushort)MessageId.SPing, ParsePacket<S_Ping>);
        _handler.Add((ushort)MessageId.SPing, PacketHandler.S_PingHandler);

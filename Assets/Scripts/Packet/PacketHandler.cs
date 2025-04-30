@@ -212,6 +212,18 @@ public class PacketHandler
         Debug.Log("Use item!");
     }
 
+    internal static void S_DropItemHandler(PacketSession session, IMessage message)
+    {
+        S_DropItem dropItem = (S_DropItem)message;
+        if (false == Managers.Inventory.Erase(dropItem.Slot))
+            return;
+
+        UI_GameScene uiGameScene = (UI_GameScene)Managers.UI.SceneUI;
+        uiGameScene.InventoryUI.RefreshUI(dropItem.Slot);
+
+        Debug.Log("Drop item!");
+    }
+
     internal static void S_ChangeStatHandler(PacketSession session, IMessage packet)
     {
         throw new System.NotImplementedException();
