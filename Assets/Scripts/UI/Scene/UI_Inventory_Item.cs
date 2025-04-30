@@ -98,15 +98,16 @@ public class UI_Inventory_Item : UI_Base
         bool insideInventory = pointerEventData.pointerEnter != null
             && pointerEventData.pointerEnter.GetComponentInParent<UI_Inventory>() != null;
 
+        _itemRectTransform.SetParent(_itemOriginalParent, true);
+        _itemRectTransform.anchoredPosition = _origin_position;
+
         if (!insideInventory)
         {
-            Debug.Log("Out!!!!");
-        }
-        else
-        {
-            _itemRectTransform.SetParent(_itemOriginalParent, true);
-            _itemRectTransform.anchoredPosition = _origin_position;
-        }
+
+            C_DropItem dropItem = new C_DropItem();
+            dropItem.Slot = Slot;
+            Managers.Network.Send(dropItem);
+        }        
     }
 
     internal void SetItem(Item item)
@@ -137,6 +138,7 @@ public class UI_Inventory_Item : UI_Base
 
             Sprite icon = Managers.Resource.Load<Sprite>(itemData.iconPath);
             _icon.sprite = icon;
+            _icon.gameObject.SetActive(true);
             _frame.gameObject.SetActive(Equipped);
         }        
     }
