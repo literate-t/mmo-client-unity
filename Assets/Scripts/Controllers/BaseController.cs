@@ -151,7 +151,7 @@ public class BaseController : MonoBehaviour
     {
         if (_animator == null || _spriteRenderer == null)
             return;
-
+        
         if (State == EntityState.Idle)
         {
             switch (Dir)
@@ -221,7 +221,9 @@ public class BaseController : MonoBehaviour
         }
         else
         {
-            // TODO : Dead
+            _animator.Play("DEATH");
+        }
+    }
 
     void UpdateStatus()
     {
