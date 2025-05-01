@@ -235,4 +235,17 @@ public class PacketHandler
         Debug.Log("PingCheck");
         Managers.Network.Send(pong);
     }
+
+    internal static void S_OnDamagedHandler(PacketSession session, IMessage packet)
+    {
+        S_OnDamaged damagedPacket = packet as S_OnDamaged;
+
+        GameObject go = Managers.Object.FindById(damagedPacket.ObjectId);
+        if (go == null)
+            return;
+
+        CreatureController entity = go.GetComponent<CreatureController>();
+        if (entity != null)
+            entity.OnDamaged(damagedPacket.ObjectId);
+    }
 }

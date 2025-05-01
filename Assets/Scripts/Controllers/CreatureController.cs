@@ -64,10 +64,11 @@ public class CreatureController : BaseController
     {
         State = EntityState.Dead;
 
-        GameObject dieEffect = Managers.Resource.Instantiate("Effect/DieEffect");
-        dieEffect.transform.position = transform.position;
-        dieEffect.GetComponent<Animator>().Play("Effect");
-        Managers.Resource.Destroy(dieEffect, 0.5f);
+    internal virtual void OnDamaged(int? objectId)
+    {
+        Status = EntityStatus.Damaged;
+        if (objectId.HasValue)
+            _objectId = objectId.Value;
     }
 
     internal virtual void UseSkill(int skillId)
