@@ -81,4 +81,11 @@ public class CreatureController : BaseController
             State = EntityState.Skill;
         }
     }
+
+    public void OnDeathAnimEnd()
+    {
+        C_AnimEnd C_AnimEnd = new C_AnimEnd();
+        C_AnimEnd.ObjectId = _objectId;
+        Managers.Network.Send(C_AnimEnd);
+    }
 }
