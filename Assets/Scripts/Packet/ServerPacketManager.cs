@@ -54,6 +54,8 @@ public class ServerPacketManager
        _handler.Add((ushort)MessageId.SChangeStat, PacketHandler.S_ChangeStatHandler);
        _onRecvPacket.Add((ushort)MessageId.SPing, ParsePacket<S_Ping>);
        _handler.Add((ushort)MessageId.SPing, PacketHandler.S_PingHandler);
+       _onRecvPacket.Add((ushort)MessageId.SOnDamaged, ParsePacket<S_OnDamaged>);
+       _handler.Add((ushort)MessageId.SOnDamaged, PacketHandler.S_OnDamagedHandler);
 
     }
 
