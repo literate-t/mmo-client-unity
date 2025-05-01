@@ -54,7 +54,7 @@ public class PacketHandler
 
     internal static void S_SkillHandler(PacketSession session, IMessage packet)
     {
-        S_Skill skillPacket = packet as S_Skill;
+         S_Skill skillPacket = packet as S_Skill;
 
         GameObject go = Managers.Object.FindById(skillPacket.ObjectId);
         if (go == null)
@@ -79,15 +79,15 @@ public class PacketHandler
 
     internal static void S_DieHandler(PacketSession session, IMessage packet)
     {
-        S_Die hpPacket = packet as S_Die;
+        S_Die diePacket = packet as S_Die;
 
-        GameObject go = Managers.Object.FindById(hpPacket.ObjectId);
+        GameObject go = Managers.Object.FindById(diePacket.ObjectId);
         if (go == null)
             return;
 
         CreatureController entity = go.GetComponent<CreatureController>();
         if (entity != null)
-            entity.OnDead();
+            entity.OnDead(diePacket.ObjectId);
     }
 
     internal static void S_ConnectedHandler(PacketSession session, IMessage packet)
