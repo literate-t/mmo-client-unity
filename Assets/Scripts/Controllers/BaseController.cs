@@ -10,8 +10,9 @@ public class BaseController : MonoBehaviour
     protected SpriteRenderer _spriteRenderer;
 
     public PositionInfo _positionInfo = new PositionInfo();
-
+    StatusInfo StatusInfo = new StatusInfo();
     StatInfo _stat = new StatInfo();
+
     public virtual StatInfo Stat
     {
         get => _stat;
@@ -58,6 +59,7 @@ public class BaseController : MonoBehaviour
             PositionInfo.PosX = value.x;
             PositionInfo.PosY = value.y;
             UpdateAnimation();
+            UpdateStatus();
             _updated = true;
         }
     }
@@ -68,11 +70,25 @@ public class BaseController : MonoBehaviour
         get => PositionInfo.State;
         set
         {
-            if (PositionInfo.State == value)
-                return;
-
             PositionInfo.State = value;
             UpdateAnimation();
+            UpdateStatus();
+            _updated = true;
+        }
+    }
+
+    public virtual EntityStatus Status
+    {
+        get => StatusInfo.Status;
+        set
+        {
+            if (StatusInfo.Status == value)
+                return;
+
+            StatusInfo.Status = value;
+
+            UpdateAnimation();
+            UpdateStatus();
             _updated = true;
         }
     }
@@ -88,6 +104,7 @@ public class BaseController : MonoBehaviour
             PositionInfo.MoveDir = value;
 
             UpdateAnimation();
+            UpdateStatus();
             _updated = true;
         }
     }
@@ -205,6 +222,35 @@ public class BaseController : MonoBehaviour
         else
         {
             // TODO : Dead
+
+    void UpdateStatus()
+    {
+        if (State == EntityState.Dead || _animator == null || _spriteRenderer == null)
+            return;
+
+        if (Status == EntityStatus.Damaged)
+        {
+            switch (Dir)
+            {                
+                case MoveDir.Up:
+                    _spriteRenderer.flipX = false;
+                    _animator.Play("HURT_UP");
+                    break;
+                case MoveDir.Down:
+                    _spriteRenderer.flipX = false;
+                    _animator.Play("HURT_DOWN");
+                    break;
+                case MoveDir.Left:
+                    _spriteRenderer.flipX = true;
+                    _animator.Play("HURT_RIGHT");
+                    break;
+                case MoveDir.Right:
+                    _spriteRenderer.flipX = false;
+                    _animator.Play("HURT_RIGHT");
+                    break;
+            }
+
+            StatusInfo.Status = EntityStatus.Normal;
         }
     }
 
