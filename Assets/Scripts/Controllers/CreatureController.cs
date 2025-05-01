@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CreatureController : BaseController
 {
+    protected int _objectId;
     HpBar _hpBar;
-
     public override StatInfo Stat
     {
         get => base.Stat;
