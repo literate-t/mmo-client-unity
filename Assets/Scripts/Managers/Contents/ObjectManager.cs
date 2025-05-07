@@ -26,7 +26,7 @@ public class ObjectManager
         {
             if (isMyPlayer)
             {
-                GameObject go = Managers.Resource.Instantiate("Entity/Archer");
+                GameObject go = Managers.Resource.Instantiate("Entity/MyArcher");
                 go.name = info.Name;
                 Add(info.ObjectId, go);
 
@@ -37,7 +37,24 @@ public class ObjectManager
             }
             else
             {
-                GameObject go = Managers.Resource.Instantiate("Entity/Player");
+                int ran = UnityEngine.Random.Range(0, 4);
+                GameObject go;
+                switch(ran)
+                {
+                    case 0:
+                        go = Managers.Resource.Instantiate("Entity/Archer");
+                        break;
+                    case 1:
+                        go = Managers.Resource.Instantiate("Entity/Spearman");
+                        break;
+                    case 2:
+                        go = Managers.Resource.Instantiate("Entity/Templar");
+                        break;
+                    default:
+                        go = Managers.Resource.Instantiate("Entity/Archer");
+                        break;
+                }
+
                 go.name = info.Name;
                 Add(info.ObjectId, go);
 
