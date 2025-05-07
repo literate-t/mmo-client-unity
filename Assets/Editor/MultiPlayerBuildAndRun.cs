@@ -44,7 +44,7 @@ public class MultiPlayerBuildAndRun
 
     private static void DeleteExistingFolders()
     {
-        string folderPath = @"D:\SourceCode\GameSource\MMO_Basic\UnityClient\Builds\Win64";
+        string folderPath = @"Builds\Win64";
 
         foreach (string dir in Directory.GetDirectories(folderPath))
         {
