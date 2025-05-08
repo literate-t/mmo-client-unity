@@ -37,22 +37,21 @@ public class ObjectManager
             }
             else
             {
-                int ran = UnityEngine.Random.Range(0, 4);
+                PrefabType prefabType = info.PrefabType;
                 GameObject go;
-                switch(ran)
+                switch(prefabType)
                 {
-                    case 0:
+                    case PrefabType.Archer:
                         go = Managers.Resource.Instantiate("Entity/Archer");
                         break;
-                    case 1:
+                    case PrefabType.Spearman:
                         go = Managers.Resource.Instantiate("Entity/Spearman");
                         break;
-                    case 2:
+                    case PrefabType.Templar:
                         go = Managers.Resource.Instantiate("Entity/Templar");
                         break;
                     default:
-                        go = Managers.Resource.Instantiate("Entity/Archer");
-                        break;
+                        throw new Exception("Invalid Prefab type");
                 }
 
                 go.name = info.Name;
