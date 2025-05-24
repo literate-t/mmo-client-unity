@@ -1,10 +1,25 @@
 using Google.Protobuf.MyProtocol;
+using TMPro;
 using UnityEngine;
 
 public class CreatureController : BaseController
 {
     protected int _objectId;
     HpBar _hpBar;
+    TextMeshProUGUI _nameText;
+
+    public string NameText 
+    { 
+        get => _nameText.text;
+        set
+        {
+            if (_nameText == null)
+                AddNameText();
+            _nameText.text = value;
+            UpdateNameText();
+        }
+    }
+
     public override StatInfo Stat
     {
         get => base.Stat;
@@ -34,6 +49,23 @@ public class CreatureController : BaseController
         UpdateHpBar();
     }
 
+    protected void AddNameText()
+    {
+        GameObject go = Managers.Resource.Instantiate("UI/NameTag", transform);
+        go.transform.localPosition = new Vector3(-0.04f, 1f, 0);
+        go.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+
+        RectTransform rect = go.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(300f, 50f);
+        _nameText = go.GetComponentInChildren<TextMeshProUGUI>();
+        _nameText.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 50f);
+    }
+
+    void UpdateNameText()
+    {
+        _nameText.name = NameText;
+    }
+
     void UpdateHpBar()
     {
         float ratio = (float)Hp / Stat.MaxHp;
@@ -48,6 +80,7 @@ public class CreatureController : BaseController
     {
         base.Init();
         AddHpBar();
+        AddNameText();
     }
 
     void Update()

@@ -109,7 +109,11 @@ public class PacketHandler
         if (loginPacket.Players == null || loginPacket.Players.Count == 0)
         {
             C_CreatePlayer createPacket = new();
+            if (Launcher.Id == null)
             createPacket.Name = MakeRandomName();
+            else
+                createPacket.Name = Launcher.Id;
+
             Managers.Network.Send(createPacket);
         }
         else

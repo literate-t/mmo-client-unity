@@ -34,6 +34,10 @@ public class ObjectManager
                 MyPlayer.Id = info.ObjectId;
                 MyPlayer._positionInfo = info.PosInfo;
                 MyPlayer.Stat.MergeFrom(info.StatInfo);
+                if (Launcher.Id != null)
+                    MyPlayer.NameText = Launcher.Id;
+                else
+                    MyPlayer.NameText = info.Name;
             }
             else
             {
@@ -61,18 +65,21 @@ public class ObjectManager
                 pc.Id = info.ObjectId;
                 pc._positionInfo = info.PosInfo;
                 pc.Stat = info.StatInfo;
+                playerController.NameText = info.Name;
             }
         }
         else if (type == GameObjectType.Monster)
         {
             GameObject go = Managers.Resource.Instantiate(info.Name);
-            go.name = info.Name;
+            string name = info.Name.Substring(info.Name.IndexOf("/") + 1);
+            go.name = name;
             Add(info.ObjectId, go);
 
             MonsterController monster = go.GetComponent<MonsterController>();
             monster.Id = info.ObjectId;
             monster._positionInfo = info.PosInfo;
             monster.Stat = info.StatInfo;
+            monster.NameText = name;
         }
         else if (type == GameObjectType.Projectile)
         {
