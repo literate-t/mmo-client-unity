@@ -63,6 +63,7 @@ public class CreatureController : BaseController
     internal virtual void OnDead(int? objectId)
     {
         State = EntityState.Dead;
+        Status = EntityStatus.StatusDead;
         if (objectId.HasValue)
             _objectId = objectId.Value;        
     }

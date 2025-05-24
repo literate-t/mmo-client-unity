@@ -111,7 +111,7 @@ public class MyPlayerController : PlayerController
 
     protected override void CheckUpdatedFlagAndSend()
     {
-        if (_updated == true)
+        if (_updated == true && Status != EntityStatus.StatusDead)
         {
             C_Move movePacket = new();
             movePacket.PosInfo = PositionInfo;
