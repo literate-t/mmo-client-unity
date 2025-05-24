@@ -1,14 +1,13 @@
 using System.Collections;
-
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class AuthVerifier : MonoBehaviour
+public class AuthVerifier
 {
-    const string TokenVerifyUrl = "localhost:8080/api/auth/verify-access-token";
+    const string TokenVerifyUrl = "http://localhost:8080/api/auth/verify-access-token";
     const string Authorization = "Authorization";
 
-    IEnumerator Start()
+    public IEnumerator Verify()
     {
         string accessToken = Launcher.AuthToken;
         if (accessToken == null)
