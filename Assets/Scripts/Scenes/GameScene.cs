@@ -13,7 +13,7 @@ public class GameScene : BaseScene
 
         Managers.Map.LoadMap(2);
 
-        Screen.SetResolution(640, 480, false);
+        Screen.SetResolution(1080, 480, false);
 
         _sceneUI = Managers.UI.ShowSceneUI<UI_GameScene>();
     }
