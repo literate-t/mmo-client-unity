@@ -110,7 +110,7 @@ public class PacketHandler
         {
             C_CreatePlayer createPacket = new();
             if (Launcher.Id == null)
-            createPacket.Name = MakeRandomName();
+                createPacket.Name = MakeRandomName();
             else
                 createPacket.Name = Launcher.Id;
 
@@ -235,8 +235,7 @@ public class PacketHandler
 
     internal static void S_PingHandler(PacketSession session, IMessage message)
     {
-        C_Pong pong = new();
-        Debug.Log("PingCheck");
+        C_Pong pong = new();        
         Managers.Network.Send(pong);
     }
 

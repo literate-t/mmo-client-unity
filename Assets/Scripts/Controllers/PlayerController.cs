@@ -29,7 +29,7 @@ public class PlayerController : CreatureController
         yield return new WaitForSeconds(0.5f);
         State = EntityState.Idle;
         _coSkill = null;
-        // 외부에서 MyPlayerController 인스턴스로 접근했을 때만 전송하도록
+        
         CheckUpdatedFlagAndSend();
     }
 
@@ -40,6 +40,7 @@ public class PlayerController : CreatureController
         yield return new WaitForSeconds(0.2f);
         State = EntityState.Idle;
         _coSkill = null;
+
         CheckUpdatedFlagAndSend();
     }
 

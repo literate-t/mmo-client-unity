@@ -43,10 +43,10 @@ public class ObjectManager
             {
                 PrefabType prefabType = info.PrefabType;
                 GameObject go;
-                switch(prefabType)
+                switch (prefabType)
                 {
                     case PrefabType.Archer:
-                        go = Managers.Resource.Instantiate("Entity/Archer");
+                        go = Managers.Resource.Instantiate("Entity/Archer");                           
                         break;
                     case PrefabType.Spearman:
                         go = Managers.Resource.Instantiate("Entity/Spearman");
@@ -61,10 +61,10 @@ public class ObjectManager
                 go.name = info.Name;
                 Add(info.ObjectId, go);
 
-                PlayerController pc = go.GetComponent<PlayerController>();
-                pc.Id = info.ObjectId;
-                pc._positionInfo = info.PosInfo;
-                pc.Stat = info.StatInfo;
+                PlayerController playerController = go.GetComponent<PlayerController>();                
+                playerController.Id = info.ObjectId;
+                playerController._positionInfo = info.PosInfo;
+                playerController.Stat = info.StatInfo;
                 playerController.NameText = info.Name;
             }
         }

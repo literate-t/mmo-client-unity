@@ -66,7 +66,6 @@ public class MyPlayerController : PlayerController
 
     protected override void MoveToNextPosition()
     {
-
         if (_moveKeyPressed == false)
         {
             State = EntityState.Idle;
@@ -99,13 +98,6 @@ public class MyPlayerController : PlayerController
             }
         }
 
-        //EntityState prevState = State;
-        //Vector3Int prevCellpostion = CellPosition;
-
-        //base.MoveToNextPosition();
-
-        //if (prevState == State && prevCellpostion == CellPosition)
-        //    return;
         CheckUpdatedFlagAndSend();
     }
 
