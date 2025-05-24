@@ -13,6 +13,10 @@ public class BaseController : MonoBehaviour
     StatusInfo StatusInfo = new StatusInfo();
     StatInfo _stat = new StatInfo();
 
+    private readonly int TriggerHurtToIdleHash = Animator.StringToHash("HurtToIdle");
+    private readonly int TriggerHurtToAttackHash = Animator.StringToHash("HurtToAttack");
+    private readonly int TriggerHurtToRunHash = Animator.StringToHash("HurtToRun");
+
     public virtual StatInfo Stat
     {
         get => _stat;
@@ -82,9 +86,6 @@ public class BaseController : MonoBehaviour
         get => StatusInfo.Status;
         set
         {
-            if (StatusInfo.Status == value)
-                return;
-
             StatusInfo.Status = value;
 
             UpdateAnimation();
@@ -252,11 +253,18 @@ public class BaseController : MonoBehaviour
                     break;
             }
 
-            StatusInfo.Status = EntityStatus.Normal;
+            Status = EntityStatus.Normal;
+
+            if (State == EntityState.Idle)
+                _animator.SetTrigger(TriggerHurtToIdleHash);
+            else if (State == EntityState.Moving)
+                _animator.SetTrigger(TriggerHurtToRunHash);
+            else if (State == EntityState.Skill)
+                _animator.SetTrigger(TriggerHurtToAttackHash);
         }
     }
 
-    void Start()
+void Start()
     {
         Init();
     }
