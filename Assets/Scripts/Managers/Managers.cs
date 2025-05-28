@@ -21,12 +21,10 @@ public class Managers : MonoBehaviour
     DataManager _data = new();
     ResourceManager _resource = new();
     SceneManagerEx _scene = new();
-    SoundManager _sound = new();
     UIManager _ui = new();
     public static DataManager Data => Instance._data;
     public static ResourceManager Resource => Instance._resource;
     public static SceneManagerEx Scene => Instance._scene;
-    public static SoundManager Sound => Instance._sound;
     public static UIManager UI => Instance._ui;
     #endregion
 
@@ -56,13 +54,11 @@ public class Managers : MonoBehaviour
 
             _s_instance._network.Init();
             _s_instance._data.Init();
-            _s_instance._sound.Init();
         }
     }
 
     public static void Clear()
     {
-        Sound.Clear();
         Scene.Clear();
         UI.Clear();
     }
