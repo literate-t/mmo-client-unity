@@ -141,6 +141,11 @@ public class MyPlayerController : PlayerController
                 statUI.RefreshUI();
             }
         }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            C_GoRandom c_GoRandom = new();
+            Managers.Network.Send(c_GoRandom);
+        }
     }
 
     void InputKeyboard()
