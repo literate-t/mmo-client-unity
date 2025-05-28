@@ -95,7 +95,7 @@ public class PacketHandler
         Debug.Log("S_ConnectedHandler");
         C_Login login = new();
         string dataPath = Application.dataPath;
-        login.UniqueId = dataPath.GetHashCode().ToString();
+        login.UniqueId = Launcher.Id != null ? Launcher.Id : dataPath.GetHashCode().ToString();
         Managers.Network.Send(login);
     }
 
