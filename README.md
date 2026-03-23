@@ -34,3 +34,5 @@
 ### Protobuf 사용
 - C++ 서버와의 원활한 통신을 위해 protobuf를 사용한다
 - 코드 자동화와 bat 파일 등을 사용해 패킷이 변경되면 서버와 클라이언트에 동시에 반영될 수 있도록 한다
+
+> [서버 깃허브 저장소](https://github.com/literate-t/mmo-server-cpp)
